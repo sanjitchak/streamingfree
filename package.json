@@ -1,0 +1,10 @@
+{
+  "name": "streamingfree",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "update-catalog": "node scripts/update-catalog.mjs",
+    "check": "node --check app.js && node --check catalog-data.js && node --check scripts/update-catalog.mjs"
+  }
+}

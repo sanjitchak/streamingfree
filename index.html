@@ -66,7 +66,7 @@
           <div class="hero-copy">
             <span class="eyebrow"><i></i> ANIME · KOREA · JAPAN</span>
             <h1>Three worlds to explore.<br><em>Nothing else.</em></h1>
-            <p>A focused home for legal anime, Korean and Japanese stories—with automatic artwork and English subtitles or dubbing.</p>
+            <p>A focused home for legal anime, Korean and Japanese stories—automatically refreshed from official sources with English subtitles or dubbing.</p>
             <div class="hero-actions">
               <button class="primary-button" data-route="discover"><span>⌕</span> Start exploring</button>
               <button class="secondary-button" id="generateHero"><span>✦</span> Build my week</button>
@@ -108,7 +108,7 @@
         <div class="page-intro">
           <span class="eyebrow"><i></i> ASIAN WATCH FINDER</span>
           <h1>Anime, Korea, Japan. <em>Only.</em></h1>
-          <p>Browse visual picks from legitimate channels and cultural streaming services available in your region.</p>
+          <p>Browse visual picks fetched daily from legitimate channels and cultural streaming services.</p>
         </div>
         <div class="filter-bar">
           <div class="filter-group" id="typeFilters">
@@ -197,12 +197,12 @@
           <article><span>1</span><div><h3>Choose your lane</h3><p>Start with Muse Asia or Ani-One for anime, KBS World for Korean shows, and JFF Theater for Japanese film.</p><button data-route="discover">Open platform finder →</button></div></article>
           <article><span>2</span><div><h3>Save Freely to your dock</h3><p>In Chrome, open the menu → Cast, save and share → Create shortcut. Enable “Open as window” for an app-like experience.</p></div></article>
           <article><span>3</span><div><h3>Set your preferences</h3><p>Pick a few genres and a nightly time budget. Your choices remain on this device in browser storage.</p><button data-route="watchlist">Build my watchlist →</button></div></article>
-          <article><span>4</span><div><h3>Go full screen</h3><p>Use the provider’s own player and press <kbd>F</kbd> or its full-screen button. Cast only through officially supported controls.</p></div></article>
+          <article><span>4</span><div><h3>Let the catalog update itself</h3><p>Every day Freely checks official Muse Asia, Korean Film Archive and JFF Theater sources. New titles appear only after subtitle or dub verification.</p></div></article>
         </div>
         <div class="privacy-note"><span>⌁</span><div><strong>Your hub stays yours.</strong><p>Freely has no account system, analytics or tracking. Preferences and watchlists stay inside your browser.</p></div></div>
       </section>
 
-      <footer><span>freely</span><p>Discovery links only. Availability and catalogs vary by country and may change.</p><button id="clearData">Reset my data</button></footer>
+      <footer><span>freely</span><p><b id="catalogUpdated">Catalog update pending</b><br>Discovery links only. Availability can still vary by country.</p><button id="clearData">Reset my data</button></footer>
     </main>
   </div>
 
@@ -216,6 +216,7 @@
     </div>
   </div>
   <div class="toast" id="toast" role="status"></div>
+  <script src="catalog-data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

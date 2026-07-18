@@ -11,36 +11,14 @@ const platforms = [
   {id:'retro',name:'RetroCrush',initials:'RC',tagline:'Classic anime catalog',regions:['United States'],types:['anime'],ads:'okay',url:'https://www.retrocrush.tv/',color:'#ed4d88',verified:'Free titles vary'}
 ];
 
-const media = [
-  {id:1,title:'Hyouka',year:'2012',type:'Series',focus:'Animation',genre:'Mystery',platform:'Muse Asia',runtime:24,tag:'School mystery',art:'linear-gradient(145deg,#293c38,#d99e95)',image:'https://i.ytimg.com/vi/lTAAB0xn3yY/hq720.jpg',words:'HYOUKA',url:'https://www.youtube.com/watch?v=lTAAB0xn3yY'},
-  {id:2,title:'Cautious Hero',year:'2019',type:'Series',focus:'Animation',genre:'Fantasy',platform:'Muse Asia',runtime:24,tag:'Fantasy comedy',art:'linear-gradient(145deg,#13284a,#8a59ba)',image:'https://i.ytimg.com/vi/XRBQS_x_1n0/hq720.jpg',words:'CAUTIOUS\nHERO',url:'https://www.youtube.com/watch?v=XRBQS_x_1n0'},
-  {id:3,title:'Gakuen Babysitters',year:'2018',type:'Series',focus:'Animation',genre:'Slice of Life',platform:'Muse Asia',runtime:24,tag:'Warm & gentle',art:'linear-gradient(145deg,#8bbdc3,#f3b99a)',image:'https://i.ytimg.com/vi/qxSlgYAec2E/hq720.jpg',words:'GAKUEN\nBABYSITTERS',url:'https://www.youtube.com/watch?v=qxSlgYAec2E'},
-  {id:4,title:'A Certain Magical Index',year:'2008',type:'Series',focus:'Animation',genre:'Fantasy',platform:'Muse Asia',runtime:24,tag:'Science fantasy',art:'linear-gradient(145deg,#19436a,#db6e67)',image:'https://i.ytimg.com/vi/pQY088rA1iA/hq720.jpg',words:'MAGICAL\nINDEX',url:'https://www.youtube.com/playlist?list=PLwLSw1_eDZl01_ftoIT3birJWkpxFZkEl'},
-  {id:5,title:'Arte',year:'2020',type:'Series',focus:'Animation',genre:'Drama',platform:'Muse Asia',runtime:24,tag:'Historical drama',art:'linear-gradient(145deg,#251b32,#cc6a63)',image:'https://i.ytimg.com/vi/B1nDigzGDAg/hq720.jpg',words:'ARTE',url:'https://www.youtube.com/watch?v=B1nDigzGDAg'},
-  {id:6,title:'Grimoire of Zero',year:'2017',type:'Series',focus:'Animation',genre:'Adventure',platform:'Muse Asia',runtime:24,tag:'Fantasy adventure',art:'linear-gradient(145deg,#176b8d,#efc23c)',image:'https://i.ytimg.com/vi/uGYM9uX5qDI/hq720.jpg',words:'GRIMOIRE\nOF ZERO',url:'https://www.youtube.com/watch?v=uGYM9uX5qDI'},
-  {id:7,title:'A Coachman',year:'1961',type:'Movie',focus:'Korean',genre:'Drama',platform:'Korean Film Archive',runtime:99,tag:'Korean classic',art:'linear-gradient(145deg,#40332a,#b07856)',image:'https://i.ytimg.com/vi/7gykTo0eEgc/hq720.jpg',words:'A\nCOACHMAN',url:'https://www.youtube.com/watch?v=7gykTo0eEgc'},
-  {id:8,title:'Under the Sky of Seoul',year:'1961',type:'Movie',focus:'Korean',genre:'Drama',platform:'Korean Film Archive',runtime:126,tag:'Restored classic',art:'linear-gradient(145deg,#3a171b,#9d5148)',image:'https://i.ytimg.com/vi/XxMG1IhCLZY/hq720.jpg',words:'UNDER THE SKY\nOF SEOUL',url:'https://www.youtube.com/watch?v=XxMG1IhCLZY'},
-  {id:9,title:'A Sunflower Family',year:'1961',type:'Movie',focus:'Korean',genre:'Drama',platform:'Korean Film Archive',runtime:122,tag:'Family drama',art:'linear-gradient(145deg,#24313c,#9a8768)',image:'https://i.ytimg.com/vi/61Ug8pRHcqQ/hq720.jpg',words:'A SUNFLOWER\nFAMILY',url:'https://www.youtube.com/watch?v=61Ug8pRHcqQ'},
-  {id:10,title:'A Bloodthirsty Killer',year:'1965',type:'Movie',focus:'Korean',genre:'Horror',platform:'Korean Film Archive',runtime:93,tag:'Gothic horror',art:'linear-gradient(145deg,#100f12,#6c1f28)',image:'https://i.ytimg.com/vi/rVVtAPh2M9Q/hq720.jpg',words:'BLOODTHIRSTY\nKILLER',url:'https://www.youtube.com/watch?v=rVVtAPh2M9Q'},
-  {id:11,title:"The Devil's Stairway",year:'1964',type:'Movie',focus:'Korean',genre:'Thriller',platform:'Korean Film Archive',runtime:108,tag:'Psychological thriller',art:'linear-gradient(145deg,#273a57,#cd7a87)',image:'https://i.ytimg.com/vi/VnvRpQFsgrY/hq720.jpg',words:"DEVIL'S\nSTAIRWAY",url:'https://www.youtube.com/watch?v=VnvRpQFsgrY'},
-  {id:12,title:'A Female Boss',year:'1959',type:'Movie',focus:'Korean',genre:'Comedy',platform:'Korean Film Archive',runtime:105,tag:'Classic comedy',art:'linear-gradient(145deg,#34506b,#dc8a79)',image:'https://i.ytimg.com/vi/T5vT42pCwfI/hq720.jpg',words:'A FEMALE\nBOSS',url:'https://www.youtube.com/watch?v=T5vT42pCwfI'},
-  {id:13,title:'The Miracles of Namiya General Store',year:'2017',type:'Movie',focus:'Japanese',genre:'Fantasy',platform:'JFF Theater',runtime:129,tag:'Time-crossing drama',art:'linear-gradient(145deg,#1d2550,#d4955a)',image:'https://www.jff.jpf.go.jp/images/2026/03/namiya_poster_release-day-cut.jpg',words:'NAMIYA\nGENERAL STORE',url:'https://www.jff.jpf.go.jp/movie/namiya-general-store/'},
-  {id:14,title:'The Blue Sky You Dropped',year:'2022',type:'Movie',focus:'Japanese',genre:'Romance',platform:'JFF Theater',runtime:93,tag:'Youth romance',art:'linear-gradient(145deg,#267aa1,#e1a6b3)',image:'https://www.jff.jpf.go.jp/images/2026/06/The-Blue-Skies-at-Your-Feet_poster.jpg',words:'THE BLUE\nSKY',url:'https://www.jff.jpf.go.jp/movie/the-blue-skies-at-your-feet/'},
-  {id:15,title:'The 100th Love with You',year:'2017',type:'Movie',focus:'Japanese',genre:'Romance',platform:'JFF Theater',runtime:116,tag:'Time-loop romance',art:'linear-gradient(145deg,#365879,#e4aaae)',image:'https://www.jff.jpf.go.jp/images/2026/04/The_100th_Love_with_You_Poster.jpg',words:'100TH LOVE\nWITH YOU',url:'https://www.jff.jpf.go.jp/movie/100-love-with-you/'},
-  {id:16,title:'Erased',year:'2016',type:'Movie',focus:'Japanese',genre:'Thriller',platform:'JFF Theater',runtime:120,tag:'Mystery thriller',art:'linear-gradient(145deg,#132b3b,#7a8793)',image:'https://www.jff.jpf.go.jp/images/2026/04/Erased_poster_release-day-cut.jpg',words:'ERASED',url:'https://www.jff.jpf.go.jp/movie/erased/'},
-  {id:17,title:'Yudo',year:'2023',type:'Movie',focus:'Japanese',genre:'Comedy',platform:'JFF Theater',runtime:126,tag:'Bathhouse comedy',art:'linear-gradient(145deg,#293b35,#ca9d65)',image:'https://www.jff.jpf.go.jp/images/2026/05/YUDO_mainposter_NoDate.jpg',words:'YUDO',url:'https://www.jff.jpf.go.jp/movie/yudo/'},
-  {id:18,title:'Tora-san, Our Lovable Tramp',year:'1969',type:'Movie',focus:'Japanese',genre:'Comedy',platform:'JFF Theater',runtime:91,tag:'Beloved classic',art:'linear-gradient(145deg,#5d3928,#dbb976)',image:'https://www.jff.jpf.go.jp/images/2026/05/Tora-San_poster-scaled.jpg',words:'TORA-SAN',url:'https://www.jff.jpf.go.jp/movie/tora-san-our-lovable-tramp/'}
-];
-
-const languageAccess = {
-  1:'EN SUB', 2:'EN SUB', 3:'EN SUB', 4:'EN SUB', 5:'EN SUB', 6:'EN DUB',
-  7:'EN SUB', 8:'EN SUB', 9:'EN SUB', 10:'EN SUB', 11:'EN SUB', 12:'EN SUB',
-  13:'EN SUB', 14:'EN SUB', 15:'EN SUB', 16:'EN SUB', 17:'EN SUB', 18:'EN SUB'
-};
-media.forEach(item => {
-  item.access = languageAccess[item.id] || null;
-  item.direct = /youtube\.com\/(watch|playlist)|jff\.jpf\.go\.jp\/movie\//.test(item.url);
-});
+const catalog = window.FREELY_CATALOG || {lastUpdated:null,sources:[],items:[]};
+const media = (catalog.items || [])
+  .map(item => ({
+    ...item,
+    id:String(item.id),
+    direct:/youtube\.com\/(watch|playlist)|jff\.jpf\.go\.jp\/movie\//.test(item.url || '')
+  }))
+  .filter(item => item.access && item.availability === 'available' && item.direct);
 
 const live = {
   'Animation & Anime':[
@@ -77,6 +55,8 @@ const state = {
   week: JSON.parse(localStorage.getItem('freely-asian-week') || '[]'),
   profile: JSON.parse(localStorage.getItem('freely-profile') || '{"name":"My profile","region":"India"}')
 };
+state.saved=state.saved.map(String);
+state.week=state.week.map(String);
 
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
@@ -86,11 +66,12 @@ function save(){localStorage.setItem('freely-asian-watchlist',JSON.stringify(sta
 
 function mediaCard(item){
   const saved=state.saved.includes(item.id);
-  return `<article class="media-card" data-id="${item.id}" data-open="${item.id}" data-direct-url="${escapeHtml(item.url)}" role="link" tabindex="0" aria-label="Open ${escapeHtml(item.title)} directly"><div class="media-art" style="background:${item.art}"><img src="${item.image}" alt="${escapeHtml(item.title)} artwork" loading="lazy" decoding="async" onerror="this.remove()"><div class="media-badges"><span class="media-badge free">FREE</span><span class="media-badge">${escapeHtml(item.focus)}</span><span class="media-badge access">CC ${escapeHtml(item.access)}</span></div><button class="watch-button ${saved?'saved':''}" data-save="${item.id}" aria-label="${saved?'Remove from':'Add to'} watchlist">${saved?'✓':'+'}</button><div class="art-content"><small>${escapeHtml(item.platform.toUpperCase())}</small><strong>${escapeHtml(item.words).replace(/\n/g,'<br>')}</strong></div><button class="play-overlay" data-open="${item.id}" aria-label="Open ${escapeHtml(item.title)} directly">▶</button></div><h3>${escapeHtml(item.title)}</h3><p>${item.access} · ${item.type} · ${item.runtime} min</p></article>`;
+  const autoBadge=item.autoDiscovered?'<span class="media-badge auto">AUTO</span>':'';
+  return `<article class="media-card" data-id="${item.id}" data-open="${item.id}" data-direct-url="${escapeHtml(item.url)}" role="link" tabindex="0" aria-label="Open ${escapeHtml(item.title)} directly"><div class="media-art" style="background:${item.art}"><img src="${item.image}" alt="${escapeHtml(item.title)} artwork" loading="lazy" decoding="async" onerror="this.remove()"><div class="media-badges"><span class="media-badge free">FREE</span><span class="media-badge">${escapeHtml(item.focus)}</span><span class="media-badge access">CC ${escapeHtml(item.access)}</span>${autoBadge}</div><button class="watch-button ${saved?'saved':''}" data-save="${item.id}" aria-label="${saved?'Remove from':'Add to'} watchlist">${saved?'✓':'+'}</button><div class="art-content"><small>${escapeHtml(item.platform.toUpperCase())}</small><strong>${escapeHtml(item.words).replace(/\n/g,'<br>')}</strong></div><button class="play-overlay" data-open="${item.id}" aria-label="Open ${escapeHtml(item.title)} directly">▶</button></div><h3>${escapeHtml(item.title)}</h3><p>${item.access} · ${item.type} · ${item.runtime} min</p></article>`;
 }
 
 function renderHome(){
-  const picks=[media[0],media[6],media[12],media[2],media[16]];
+  const picks=[media[0],media[6],media[12],media[2],media[16]].filter(Boolean);
   $('#homePicks').innerHTML=picks.map(mediaCard).join('');
   const visible=platforms.filter(p=>p.regions.includes(state.profile.region)||p.regions.includes('Global')).slice(0,4);
   $('#platformMiniList').innerHTML=visible.map(p=>`<a class="platform-mini" href="${p.url}" target="_blank" rel="noopener"><span class="platform-logo" style="background:${p.color}">${p.initials}</span><span><strong>${p.name}</strong><small>${p.tagline}</small></span><b>↗</b></a>`).join('');
@@ -125,6 +106,7 @@ function renderWeek(){
 function renderTools(){$('#toolGrid').innerHTML=tools.map(t=>`<article class="tool-card"><span class="tool-icon" style="background:${t.color}">${t.icon}</span><h3>${t.title}</h3><p>${t.text}</p><a href="${t.link}" target="_blank" rel="noopener">${t.cta} →</a><small>${t.note}</small></article>`).join('')}
 function updateProfile(){const {name,region}=state.profile;$('#profileName').textContent=name;$('#profileRegion').textContent=`${region} · Free plan`;$('#regionLabel').textContent=region;$('#avatar').textContent=(name==='My profile'?'A':name[0]).toUpperCase();$('#nameInput').value=name==='My profile'?'':name;$('#regionInput').value=region;$('#finderRegion').value=region;renderHome()}
 function updateCount(){$('#navWatchCount').textContent=state.saved.length}
+function updateCatalogStatus(){const el=$('#catalogUpdated');if(!el)return;if(!catalog.lastUpdated){el.textContent='Catalog update unavailable';return}const date=new Date(catalog.lastUpdated);el.textContent=`Catalog checked ${date.toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'})} · ${media.length} verified titles`;}
 
 function route(name){
   state.route=name;$$('.view').forEach(v=>v.classList.toggle('active',v.dataset.view===name));$$('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.route===name));$('#sidebar').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});history.replaceState(null,'',`#${name}`);
@@ -133,8 +115,8 @@ function route(name){
 
 document.addEventListener('click',e=>{
   const routeButton=e.target.closest('[data-route]');if(routeButton){e.preventDefault();route(routeButton.dataset.route);return}
-  const saveButton=e.target.closest('[data-save]');if(saveButton){const id=Number(saveButton.dataset.save);state.saved=state.saved.includes(id)?state.saved.filter(x=>x!==id):[...state.saved,id];save();updateCount();renderHome();renderDiscover();toast(state.saved.includes(id)?'Added to your watchlist':'Removed from watchlist');return}
-  const openButton=e.target.closest('[data-open]');if(openButton){const item=media.find(x=>x.id===Number(openButton.dataset.open)&&x.direct);if(item)window.open(item.url,'_blank','noopener');return}
+  const saveButton=e.target.closest('[data-save]');if(saveButton){const id=String(saveButton.dataset.save);state.saved=state.saved.includes(id)?state.saved.filter(x=>x!==id):[...state.saved,id];save();updateCount();renderHome();renderDiscover();toast(state.saved.includes(id)?'Added to your watchlist':'Removed from watchlist');return}
+  const openButton=e.target.closest('[data-open]');if(openButton){const item=media.find(x=>x.id===String(openButton.dataset.open)&&x.direct);if(item)window.open(item.url,'_blank','noopener');return}
   const genreButton=e.target.closest('[data-genre]');if(genreButton){const g=genreButton.dataset.genre;state.genres=state.genres.includes(g)?state.genres.filter(x=>x!==g):[...state.genres,g];if(!state.genres.length)state.genres=[g];save();renderGenres()}
   if(!e.target.closest('.search-wrap'))$('#searchResults').hidden=true;
 });
@@ -150,12 +132,12 @@ $('#runtimeRange').addEventListener('input',e=>$('#runtimeValue').textContent=`$
 $('#findPlatformButton').addEventListener('click',()=>{const region=$('#finderRegion').value,need=$('#finderNeed').value,ads=$('#finderAds').value;let found=platforms.filter(p=>(p.regions.includes(region)||p.regions.includes('Global'))&&p.types.includes(need)&&(ads==='okay'||p.ads==='avoid')).slice(0,3);if(!found.length)found=platforms.filter(p=>p.regions.includes('Global')).slice(0,3);$('#finderResults').innerHTML=found.map(p=>`<a class="finder-result" href="${p.url}" target="_blank" rel="noopener"><span class="platform-logo" style="background:${p.color}">${p.initials}</span><span>${p.name}<small style="display:block;color:var(--muted)">${p.verified}</small></span><b>↗</b></a>`).join('')});
 $('#searchSubtitles').addEventListener('click',()=>{const q=$('#subtitleTitle').value.trim(),lang=$('#subtitleLanguage').value;if(!q){toast('Enter a movie or show title');return}const encoded=encodeURIComponent(q);$('#subtitleResults').innerHTML=`<span class="cc-illustration">CC</span><h3>${escapeHtml(q)}</h3><p>Search for ${escapeHtml(lang)} subtitles. Verify the release match before downloading.</p><div class="subtitle-links"><a href="https://www.opensubtitles.com/en/en/search-all/q-${encoded}" target="_blank" rel="noopener">OpenSubtitles ↗</a><a href="https://subdl.com/search/${encoded}" target="_blank" rel="noopener">SubDL ↗</a></div>`});
 $('#globalSearch').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase(),box=$('#searchResults');if(q.length<2){box.hidden=true;return}const results=media.filter(m=>m.access&&m.direct&&[m.title,m.genre,m.platform,m.type,m.focus,m.access].some(v=>v.toLowerCase().includes(q))).slice(0,6);box.innerHTML=results.length?results.map(m=>`<button class="search-result" data-open="${m.id}"><span class="search-result-art" style="background-image:url('${m.image}');background-size:cover;background-position:center"></span><span><strong>${m.title}</strong><small>${m.access} · ${m.platform}</small></span></button>`).join(''):'<div style="padding:16px;color:var(--muted);font-size:11px">No subtitled or dubbed matches found.</div>';box.hidden=false});
-document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();$('#globalSearch').focus()}if((e.key==='Enter'||e.key===' ')&&e.target.matches('.media-card')){e.preventDefault();const item=media.find(x=>x.id===Number(e.target.dataset.open)&&x.direct);if(item)window.open(item.url,'_blank','noopener')}if(e.key==='Escape'){$('#searchResults').hidden=true;$('#profileModal').hidden=true}});
+document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();$('#globalSearch').focus()}if((e.key==='Enter'||e.key===' ')&&e.target.matches('.media-card')){e.preventDefault();const item=media.find(x=>x.id===String(e.target.dataset.open)&&x.direct);if(item)window.open(item.url,'_blank','noopener')}if(e.key==='Escape'){$('#searchResults').hidden=true;$('#profileModal').hidden=true}});
 $('#clearData').addEventListener('click',()=>{localStorage.removeItem('freely-asian-watchlist');localStorage.removeItem('freely-asian-genres');localStorage.removeItem('freely-asian-week');localStorage.removeItem('freely-profile');location.reload()});
 
 function init(){
   if(localStorage.getItem('freely-theme')==='light')document.body.classList.add('light');
-  renderGenres();renderHome();renderDiscover();renderLive();renderWeek();renderTools();updateProfile();updateCount();
+  renderGenres();renderHome();renderDiscover();renderLive();renderWeek();renderTools();updateProfile();updateCount();updateCatalogStatus();
   const hash=location.hash.slice(1);route(['home','discover','live','watchlist','subtitles','toolkit','setup'].includes(hash)?hash:'home');
 }
 init();

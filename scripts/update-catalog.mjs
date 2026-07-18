@@ -10,7 +10,8 @@ const CATALOG_FILE = path.join(ROOT, 'catalog-data.js');
 const NOW = new Date().toISOString();
 const USER_AGENT = 'FreelyCatalogBot/2.0 (+https://github.com/sanjitchak/streamingfree)';
 const CATEGORY_TARGET = 100;
-const MAX_DAILY_CHECKS = 75;
+const MAX_NEW_TITLES_PER_REFRESH = 100;
+const MAX_DAILY_CHECKS = 100;
 const MAX_MAL_LOOKUPS = Number(process.env.MAX_MAL_LOOKUPS || 100);
 const RATING_RECHECK_DAYS = 30;
 
@@ -22,6 +23,12 @@ const SOURCES = [
     platform: 'Muse Asia', focus: 'Animation'
   },
   {
+    id: 'ani-one-asia', name: 'Ani-One Asia', type: 'ani-one-playlists',
+    url: 'https://www.youtube.com/@AniOneAsia/playlists',
+    channelId: 'UC0wNSTMWIL3qaorLx0jie6A', indexLimit: 1000,
+    platform: 'Ani-One Asia', focus: 'Animation'
+  },
+  {
     id: 'kofa', name: 'Korean Film Archive', type: 'kofa-channel',
     url: 'https://www.youtube.com/@KoreanFilm/videos',
     channelId: 'UCvH6u_Qzn5RQdz9W198umDw', indexLimit: 400,
@@ -30,7 +37,13 @@ const SOURCES = [
   {
     id: 'kbs-world', name: 'KBS World TV', type: 'kbs-playlists',
     url: 'https://www.youtube.com/@kbsworldtv/playlists',
-    channelId: 'UC5BMQOsAB8hKUyHu9KI6yig', indexLimit: 500,
+    channelId: 'UC5BMQOsAB8hKUyHu9KI6yig', indexLimit: 2000,
+    platform: 'KBS World', focus: 'Korean'
+  },
+  {
+    id: 'kbs-world-episodes', name: 'KBS World full episodes', type: 'kbs-videos',
+    url: 'https://www.youtube.com/@kbsworldtv/videos',
+    channelId: 'UC5BMQOsAB8hKUyHu9KI6yig', indexLimit: 2000,
     platform: 'KBS World', focus: 'Korean'
   },
   {
@@ -285,9 +298,9 @@ async function discoverYoutubeFeed(source, existingItems) {
   const entries = parseFeed(text);
   const candidates = [];
   for (const entry of entries) {
-    const access = accessFromTitle(entry.title);
+    const access = source.id === 'ani-one-asia' ? 'EN SUB' : accessFromTitle(entry.title);
     const title = source.id === 'kofa' ? parseKofaTitle(entry.title) : canonicalAnimeTitle(entry.title);
-    if (!title || (source.id === 'muse-asia' && (!access || isPromo(entry.title)))) continue;
+    if (!title || (source.id === 'muse-asia' && (!access || isPromo(entry.title))) || (source.id === 'ani-one-asia' && (isPromo(entry.title) || /\bULTRA\b/i.test(entry.title)))) continue;
     const key = `${source.id}:${slugify(title)}`;
     const current = findExisting(existingItems, source, key, title);
     const item = {
@@ -296,7 +309,7 @@ async function discoverYoutubeFeed(source, existingItems) {
       image: entry.image, access: access || current?.access || null,
       publishedAt: entry.publishedAt, words: cardWords(title)
     };
-    candidates.push(source.id === 'kofa' ? await verifyYoutube(item) : item);
+    candidates.push(source.id === 'kofa' ? await verifyYoutube(item) : source.id === 'ani-one-asia' ? { ...item, accessEvidence: 'official-english-channel' } : item);
   }
   return { candidates: candidates.filter(item => item.access && item.availability === 'available'), feedCount: entries.length, method: 'rss-fallback' };
 }
@@ -328,7 +341,42 @@ async function discoverMusePlaylists(source, existingItems) {
       accessEvidence: 'official-playlist-title', availability: 'available',
       accessVerifiedAt: NOW, lastCheckedAt: NOW, unavailableReason: null, checkError: null
     });
-    if (candidates.length >= 150) break;
+    if (candidates.length >= 250) break;
+  }
+  return { candidates, feedCount: entries.length, method: 'full-playlist-index' };
+}
+
+function aniOneTitle(rawTitle = '') {
+  const quoted = rawTitle.match(/《([^》]+)》/);
+  if (quoted?.[1]) return quoted[1].trim();
+  return rawTitle.split(/[|｜︳]/)[0].replace(/^\s*(?:【[^】]*】|\[[^\]]*\])\s*/u, '').trim();
+}
+
+async function discoverAniOnePlaylists(source, existingItems) {
+  let entries;
+  try { entries = await ytDlpEntries(source); }
+  catch { return discoverYoutubeFeed(source, existingItems); }
+  if (entries.length < 50) return discoverYoutubeFeed(source, existingItems);
+  const candidates = [];
+  const seen = new Set();
+  for (const entry of entries) {
+    const rawTitle = String(entry.title || '').trim();
+    if (!rawTitle || /\bULTRA\b/i.test(rawTitle) || isPromo(rawTitle) || /\b(interview|marathon|anniversary|after hours|online fest)\b/i.test(rawTitle)) continue;
+    const title = aniOneTitle(rawTitle);
+    if (!title || !/[A-Za-z]{3}/.test(title)) continue;
+    const key = `${source.id}:${slugify(title)}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const current = findExisting(existingItems, source, key, title);
+    const item = current || baseItem({ id: key, title, source, url: `https://www.youtube.com/playlist?list=${entry.id}`, image: bestThumbnail(entry), access: 'EN SUB', publishedAt: timestampToIso(entry.timestamp), type: 'Series', genre: 'Animation', runtime: 24 });
+    candidates.push({
+      ...item, sourceKey: key, title, words: cardWords(title),
+      url: `https://www.youtube.com/playlist?list=${entry.id}`,
+      image: bestThumbnail(entry) || item.image, access: 'EN SUB',
+      accessEvidence: 'official-english-channel', availability: 'available',
+      accessVerifiedAt: NOW, lastCheckedAt: NOW, unavailableReason: null, checkError: null
+    });
+    if (candidates.length >= 300) break;
   }
   return { candidates, feedCount: entries.length, method: 'full-playlist-index' };
 }
@@ -397,9 +445,34 @@ async function discoverKbsPlaylists(source, existingItems) {
       publishedAt: timestampToIso(entry.timestamp) || item.publishedAt,
       unavailableReason: null, checkError: null
     });
-    if (candidates.length >= 150) break;
+    if (candidates.length >= 1500) break;
   }
   return { candidates, feedCount: entries.length, method: 'full-playlist-index' };
+}
+
+async function discoverKbsVideos(source, existingItems) {
+  const entries = await ytDlpEntries(source);
+  const candidates = [];
+  for (const entry of entries) {
+    const rawTitle = String(entry.title || '').trim();
+    const duration = Number(entry.duration || 0);
+    if (!rawTitle || duration < 1200 || duration > 7200 || !/[A-Za-z]{4}/.test(rawTitle) || !isKbsProgramPlaylist(rawTitle)) continue;
+    const title = kbsEnglishTitle(rawTitle).replace(/\s+/g, ' ').trim();
+    const key = `${source.id}:${entry.id}`;
+    const current = existingItems.find(item => item.sourceKey === key || item.url?.endsWith(`=${entry.id}`));
+    const publishedAt = timestampToIso(entry.timestamp);
+    const item = current || baseItem({ id: key, title, source, url: `https://www.youtube.com/watch?v=${entry.id}`, image: bestThumbnail(entry), access: 'EN SUB', publishedAt, type: 'Episode', genre: 'Korean TV', runtime: Math.round(duration / 60) });
+    candidates.push({
+      ...item, sourceKey: key, title, words: cardWords(title),
+      url: `https://www.youtube.com/watch?v=${entry.id}`,
+      image: bestThumbnail(entry) || item.image, runtime: Math.round(duration / 60),
+      access: 'EN SUB', accessEvidence: 'official-english-channel',
+      availability: 'available', accessVerifiedAt: NOW, lastCheckedAt: NOW,
+      publishedAt: publishedAt || item.publishedAt, unavailableReason: null, checkError: null
+    });
+    if (candidates.length >= 1200) break;
+  }
+  return { candidates, feedCount: entries.length, method: 'full-episode-index' };
 }
 
 function nhkSeriesName(title) {
@@ -419,7 +492,7 @@ async function discoverNhkChannel(source, existingItems) {
     if (!title || duration < 600 || duration > 7200 || !/[A-Za-z]{4}/.test(title) || isPromo(title) || /\b(newsline|newsroom tokyo|nhk news)\b/i.test(title)) continue;
     const series = comparableTitle(nhkSeriesName(title));
     const count = seriesCounts.get(series) || 0;
-    if (count >= 3) continue;
+    if (count >= 20) continue;
     seriesCounts.set(series, count + 1);
     const key = `${source.id}:${entry.id}`;
     const current = existingItems.find(item => item.sourceKey === key || item.url?.endsWith(`=${entry.id}`));
@@ -433,7 +506,7 @@ async function discoverNhkChannel(source, existingItems) {
       availability: 'available', accessVerifiedAt: NOW, lastCheckedAt: NOW,
       publishedAt: publishedAt || item.publishedAt, unavailableReason: null, checkError: null
     });
-    if (candidates.length >= 120) break;
+    if (candidates.length >= 500) break;
   }
   return { candidates, feedCount: entries.length, method: 'full-channel-index' };
 }
@@ -465,18 +538,22 @@ async function discoverJff(source, existingItems) {
   return { candidates: candidates.filter(item => item.availability === 'available' && item.access), feedCount: cards.length, method: 'official-site' };
 }
 
-function mergeItems(items, candidates) {
+function mergeItems(items, candidates, newItemBudget) {
   const merged = [...items];
+  let added = 0;
   for (const candidate of candidates) {
     const index = merged.findIndex(item => item.sourceKey === candidate.sourceKey || item.url === candidate.url);
     if (index >= 0) merged[index] = { ...merged[index], ...candidate };
-    else merged.push(candidate);
+    else if (added < newItemBudget) {
+      merged.push(candidate);
+      added++;
+    }
   }
-  return merged;
+  return { items: merged, added };
 }
 
 function itemRecency(item) {
-  return String(item.publishedAt || item.discoveredAt || '');
+  return `${item.discoveredAt || ''}|${item.publishedAt || ''}`;
 }
 
 function markVisibleCategories(items) {
@@ -567,8 +644,10 @@ async function enrichMalRatings(items) {
 
 async function discoverSource(source, items) {
   if (source.type === 'muse-playlists') return discoverMusePlaylists(source, items);
+  if (source.type === 'ani-one-playlists') return discoverAniOnePlaylists(source, items);
   if (source.type === 'kofa-channel') return discoverKofaChannel(source, items);
   if (source.type === 'kbs-playlists') return discoverKbsPlaylists(source, items);
+  if (source.type === 'kbs-videos') return discoverKbsVideos(source, items);
   if (source.type === 'nhk-channel') return discoverNhkChannel(source, items);
   return discoverJff(source, items);
 }
@@ -587,11 +666,14 @@ async function main() {
   items = items.map(item => rollingIds.has(item.id) ? checkedById.get(item.id) : item);
 
   const sourceRuns = [];
+  let newTitleBudget = MAX_NEW_TITLES_PER_REFRESH;
   for (const source of SOURCES) {
     try {
       const result = await discoverSource(source, items);
-      items = mergeItems(items, result.candidates);
-      sourceRuns.push({ id: source.id, name: source.name, ok: true, method: result.method, fetchedAt: NOW, feedItems: result.feedCount, eligibleItems: result.candidates.length });
+      const merged = mergeItems(items, result.candidates, newTitleBudget);
+      items = merged.items;
+      newTitleBudget -= merged.added;
+      sourceRuns.push({ id: source.id, name: source.name, ok: true, method: result.method, fetchedAt: NOW, feedItems: result.feedCount, eligibleItems: result.candidates.length, newItemsAdded: merged.added });
     } catch (error) {
       sourceRuns.push({ id: source.id, name: source.name, ok: false, fetchedAt: NOW, error: error.message });
     }
@@ -619,14 +701,16 @@ async function main() {
       categories: categoryCounts,
       unavailable: items.filter(item => item.availability === 'unavailable').length,
       autoDiscovered: items.filter(item => item.autoDiscovered).length,
-      rated: items.filter(item => item.rating?.value).length
+      rated: items.filter(item => item.rating?.value).length,
+      newTitlesAdded: MAX_NEW_TITLES_PER_REFRESH - newTitleBudget
     },
     items
   };
 
   await fs.writeFile(CATALOG_FILE, `window.FREELY_CATALOG = ${JSON.stringify(nextCatalog, null, 2)};\n`);
   console.log(`Catalog updated: ${visibleItems.length} visible (${Object.entries(categoryCounts).map(([key, value]) => `${key} ${value}`).join(', ')}), ${nextCatalog.summary.rated} rated.`);
-  for (const run of sourceRuns) console.log(`${run.ok ? 'OK' : 'WARN'} ${run.name}: ${run.ok ? `${run.eligibleItems}/${run.feedItems} eligible via ${run.method}` : run.error}`);
+  for (const run of sourceRuns) console.log(`${run.ok ? 'OK' : 'WARN'} ${run.name}: ${run.ok ? `${run.eligibleItems}/${run.feedItems} eligible, ${run.newItemsAdded} new via ${run.method}` : run.error}`);
+  console.log(`New titles added this refresh: ${nextCatalog.summary.newTitlesAdded}/${MAX_NEW_TITLES_PER_REFRESH}.`);
   console.log(`MAL ratings: ${ratingRun.matched}/${ratingRun.attempted} matched this run.`);
 }
 

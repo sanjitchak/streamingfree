@@ -152,9 +152,13 @@ function youtubeId(url) {
   try { return new URL(url).searchParams.get('v'); } catch { return null; }
 }
 
-function hasEnglishCaptionTrack(html) {
-  const block = (html.match(/"captionTracks":\[([\s\S]*?)\],"audioTracks"/) || [])[1] || '';
-  return /"languageCode":"en(?:-|"|\\)/.test(block) || /"simpleText":"English(?: \([^)]*\))?"/.test(block);
+function englishCaptionStatus(html) {
+  const match = html.match(/"captionTracks":\[([\s\S]*?)\],"audioTracks"/);
+  if (!match) return 'unknown';
+  const block = match[1];
+  return /"languageCode":"en(?:-|"|\\)/.test(block) || /"simpleText":"English(?: \([^)]*\))?"/.test(block)
+    ? 'present'
+    : 'absent';
 }
 
 async function verifyYoutube(item) {
@@ -193,7 +197,8 @@ async function verifyYoutube(item) {
     }
 
     const watch = await fetchText(`https://www.youtube.com/watch?v=${id}&hl=en`);
-    if (watch.response.ok && hasEnglishCaptionTrack(watch.text)) {
+    const captionStatus = watch.response.ok ? englishCaptionStatus(watch.text) : 'unknown';
+    if (captionStatus === 'present') {
       return {
         ...checked,
         availability: 'available',
@@ -204,10 +209,19 @@ async function verifyYoutube(item) {
       };
     }
 
+    if (captionStatus === 'unknown') {
+      return {
+        ...item,
+        lastCheckedAt: NOW,
+        checkError: 'caption-metadata-unavailable'
+      };
+    }
+
     return {
       ...checked,
       availability: 'unavailable',
-      unavailableReason: 'english-sub-or-dub-not-found'
+      unavailableReason: 'english-sub-or-dub-not-found',
+      availabilityEvidence: 'caption-list-without-english'
     };
   } catch (error) {
     return { ...item, checkError: error.message };

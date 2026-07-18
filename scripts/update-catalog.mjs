@@ -305,6 +305,9 @@ async function discoverMusePlaylists(source, existingItems) {
   let entries;
   try { entries = await ytDlpEntries(source); }
   catch { return discoverYoutubeFeed(source, existingItems); }
+  // Some data-center IPs receive only YouTube's small pinned-playlist subset.
+  // In that case the official RSS feed is a better signal for genuinely new uploads.
+  if (entries.length < 50) return discoverYoutubeFeed(source, existingItems);
   const candidates = [];
   const seen = new Set();
   for (const entry of entries) {

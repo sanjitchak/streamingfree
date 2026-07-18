@@ -1,12 +1,12 @@
 window.FREELY_CATALOG = {
   "schemaVersion": 1,
-  "lastUpdated": "2026-07-18T06:28:04.949Z",
+  "lastUpdated": "2026-07-18T06:19:05.745Z",
   "sources": [
     {
       "id": "muse-asia",
       "name": "Muse Asia",
       "ok": true,
-      "fetchedAt": "2026-07-18T06:28:04.949Z",
+      "fetchedAt": "2026-07-18T06:19:05.745Z",
       "feedItems": 15,
       "eligibleItems": 7
     },
@@ -14,23 +14,23 @@ window.FREELY_CATALOG = {
       "id": "kofa",
       "name": "Korean Film Archive",
       "ok": true,
-      "fetchedAt": "2026-07-18T06:28:04.949Z",
+      "fetchedAt": "2026-07-18T06:19:05.745Z",
       "feedItems": 15,
-      "eligibleItems": 1
+      "eligibleItems": 0
     },
     {
       "id": "jff",
       "name": "JFF Theater",
       "ok": true,
-      "fetchedAt": "2026-07-18T06:28:04.949Z",
+      "fetchedAt": "2026-07-18T06:19:05.745Z",
       "feedItems": 17,
       "eligibleItems": 17
     }
   ],
   "summary": {
     "total": 37,
-    "available": 34,
-    "unavailable": 3,
+    "available": 30,
+    "unavailable": 7,
     "autoDiscovered": 19
   },
   "items": [
@@ -55,8 +55,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "curated:1",
       "accessEvidence": "curated-hardsub",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null
     },
@@ -81,8 +81,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "curated:2",
       "accessEvidence": "curated-hardsub",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null
     },
@@ -107,8 +107,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "curated:3",
       "accessEvidence": "curated-hardsub",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null
     },
@@ -133,7 +133,7 @@ window.FREELY_CATALOG = {
       "sourceKey": "curated:4",
       "accessEvidence": "curated-hardsub",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
       "accessVerifiedAt": "2026-07-18T00:00:00.000Z",
       "checkError": null
     },
@@ -158,8 +158,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "curated:5",
       "accessEvidence": "official-title",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null
     },
@@ -184,8 +184,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "curated:6",
       "accessEvidence": "official-title",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null
     },
@@ -204,16 +204,16 @@ window.FREELY_CATALOG = {
       "words": "A\nCOACHMAN",
       "url": "https://www.youtube.com/watch?v=7gykTo0eEgc",
       "access": "EN SUB",
-      "availability": "available",
+      "availability": "unavailable",
       "curated": true,
       "sourceId": "kofa",
       "sourceKey": "curated:7",
       "accessEvidence": "english-caption-track",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
       "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
       "checkError": null,
-      "unavailableReason": null
+      "unavailableReason": "english-sub-or-dub-not-found"
     },
     {
       "id": "8",
@@ -236,7 +236,7 @@ window.FREELY_CATALOG = {
       "sourceKey": "curated:8",
       "accessEvidence": "english-caption-track",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
       "accessVerifiedAt": "2026-07-18T00:00:00.000Z",
       "checkError": null,
       "unavailableReason": "english-sub-or-dub-not-found"
@@ -256,16 +256,16 @@ window.FREELY_CATALOG = {
       "words": "A SUNFLOWER\nFAMILY",
       "url": "https://www.youtube.com/watch?v=61Ug8pRHcqQ",
       "access": "EN SUB",
-      "availability": "available",
+      "availability": "unavailable",
       "curated": true,
       "sourceId": "kofa",
       "sourceKey": "curated:9",
       "accessEvidence": "english-caption-track",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
       "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
       "checkError": null,
-      "unavailableReason": null
+      "unavailableReason": "english-sub-or-dub-not-found"
     },
     {
       "id": "10",
@@ -282,16 +282,16 @@ window.FREELY_CATALOG = {
       "words": "BLOODTHIRSTY\nKILLER",
       "url": "https://www.youtube.com/watch?v=rVVtAPh2M9Q",
       "access": "EN SUB",
-      "availability": "available",
+      "availability": "unavailable",
       "curated": true,
       "sourceId": "kofa",
       "sourceKey": "curated:10",
       "accessEvidence": "english-caption-track",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
       "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
       "checkError": null,
-      "unavailableReason": null
+      "unavailableReason": "english-sub-or-dub-not-found"
     },
     {
       "id": "11",
@@ -314,7 +314,7 @@ window.FREELY_CATALOG = {
       "sourceKey": "curated:11",
       "accessEvidence": "english-caption-track",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
       "accessVerifiedAt": "2026-07-18T00:00:00.000Z",
       "checkError": null,
       "unavailableReason": "english-sub-or-dub-not-found"
@@ -340,7 +340,7 @@ window.FREELY_CATALOG = {
       "sourceKey": "curated:12",
       "accessEvidence": "english-caption-track",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
       "accessVerifiedAt": "2026-07-18T06:27:06.230Z",
       "checkError": null,
       "unavailableReason": "english-sub-or-dub-not-found"
@@ -366,8 +366,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "curated:13",
       "accessEvidence": "official-page",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "unavailableReason": null,
       "checkError": null
     },
@@ -392,8 +392,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "curated:14",
       "accessEvidence": "official-page",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "unavailableReason": null,
       "checkError": null
     },
@@ -418,8 +418,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "curated:15",
       "accessEvidence": "official-page",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "unavailableReason": null,
       "checkError": null
     },
@@ -444,8 +444,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "curated:16",
       "accessEvidence": "official-page",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "unavailableReason": null,
       "checkError": null
     },
@@ -470,8 +470,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "curated:17",
       "accessEvidence": "official-page",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "unavailableReason": null,
       "checkError": null
     },
@@ -496,8 +496,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "curated:18",
       "accessEvidence": "official-page",
       "discoveredAt": "2026-07-18T00:00:00.000Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "unavailableReason": null,
       "checkError": null
     },
@@ -523,8 +523,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "jff:sagrada-reset-part1",
       "publishedAt": null,
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-page"
@@ -551,8 +551,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "jff:sagrada-reset-part2",
       "publishedAt": null,
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-page"
@@ -579,8 +579,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "jff:sumo-do-sumo-dont",
       "publishedAt": null,
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-page"
@@ -607,8 +607,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "jff:shodo-girls",
       "publishedAt": null,
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-page"
@@ -635,8 +635,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "jff:every-day-a-good-day",
       "publishedAt": null,
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-page"
@@ -663,8 +663,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "jff:bonsai-warrior",
       "publishedAt": null,
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-page"
@@ -691,8 +691,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "jff:inuyashiki",
       "publishedAt": null,
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-page"
@@ -719,8 +719,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "jff:discovering-with-new-eyes",
       "publishedAt": null,
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-page"
@@ -747,8 +747,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "jff:5-sword-accoutrements",
       "publishedAt": null,
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-page"
@@ -775,8 +775,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "jff:ki-ki-shamisen",
       "publishedAt": null,
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-page"
@@ -803,8 +803,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "jff:japanese-yokai-01",
       "publishedAt": null,
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-page"
@@ -831,8 +831,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "muse-asia:rilakkuma",
       "publishedAt": "2026-07-18T01:00:06+00:00",
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-title"
@@ -859,8 +859,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "muse-asia:draw-this-then-die",
       "publishedAt": "2026-07-17T16:00:07+00:00",
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-title"
@@ -887,8 +887,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "muse-asia:that-time-i-got-reincarnated-as-a-slime",
       "publishedAt": "2026-07-17T15:00:06+00:00",
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-title"
@@ -915,8 +915,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "muse-asia:fullmetal-alchemist-brotherhood",
       "publishedAt": "2026-07-17T13:00:06+00:00",
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-title"
@@ -943,8 +943,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "muse-asia:the-exiled-heavy-knight-knows-how-to-game-the-system",
       "publishedAt": "2026-07-16T17:56:06+00:00",
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-title"
@@ -971,8 +971,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "muse-asia:kaiju-girl-caramelise",
       "publishedAt": "2026-07-16T17:28:07+00:00",
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-title"
@@ -999,8 +999,8 @@ window.FREELY_CATALOG = {
       "sourceKey": "muse-asia:bang-dream-yume-mita",
       "publishedAt": "2026-07-16T14:00:06+00:00",
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
-      "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
+      "accessVerifiedAt": "2026-07-18T06:19:05.745Z",
       "checkError": null,
       "unavailableReason": null,
       "accessEvidence": "official-title"
@@ -1020,17 +1020,17 @@ window.FREELY_CATALOG = {
       "words": "SISTERS' GARDEN",
       "url": "https://www.youtube.com/watch?v=AxraJIX5PQI",
       "access": "EN SUB",
-      "availability": "available",
+      "availability": "unavailable",
       "curated": false,
       "autoDiscovered": true,
       "sourceId": "kofa",
       "sourceKey": "kofa:sisters-garden",
       "publishedAt": "2026-07-13T13:00:06+00:00",
       "discoveredAt": "2026-07-18T06:27:06.230Z",
-      "lastCheckedAt": "2026-07-18T06:28:04.949Z",
+      "lastCheckedAt": "2026-07-18T06:19:05.745Z",
       "accessVerifiedAt": "2026-07-18T06:28:04.949Z",
       "checkError": null,
-      "unavailableReason": null,
+      "unavailableReason": "english-sub-or-dub-not-found",
       "accessEvidence": "english-caption-track"
     }
   ]

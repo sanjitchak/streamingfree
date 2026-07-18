@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0f">
+  <meta name="description" content="Freely — a personal hub for legal, free movies, shows and live TV.">
+  <title>Freely — Anime, Korean & Japanese streaming</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#home" data-route="home" aria-label="Freely home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>freely</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Primary navigation">
+        <button class="nav-item active" data-route="home"><span class="nav-icon">⌂</span>Home</button>
+        <button class="nav-item" data-route="discover"><span class="nav-icon">⌕</span>Discover</button>
+        <button class="nav-item" data-route="live"><span class="nav-icon live-icon">●</span>Live TV</button>
+        <button class="nav-item" data-route="watchlist"><span class="nav-icon">♡</span>My Watchlist <span class="nav-count" id="navWatchCount">0</span></button>
+      </nav>
+
+      <p class="nav-label">YOUR TOOLS</p>
+      <nav class="main-nav" aria-label="Tools navigation">
+        <button class="nav-item" data-route="subtitles"><span class="nav-icon">CC</span>Subtitles</button>
+        <button class="nav-item" data-route="toolkit"><span class="nav-icon">✦</span>Toolkit</button>
+        <button class="nav-item" data-route="setup"><span class="nav-icon">⌘</span>Hub setup</button>
+      </nav>
+
+      <div class="sidebar-spacer"></div>
+      <div class="legal-card">
+        <span class="shield">✓</span>
+        <div><strong>100% legitimate</strong><small>Only official, licensed platforms</small></div>
+      </div>
+      <button class="profile-chip" id="profileButton">
+        <span class="avatar" id="avatar">A</span>
+        <span><strong id="profileName">My profile</strong><small id="profileRegion">India · Free plan</small></span>
+        <span class="more">•••</span>
+      </button>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuButton" aria-label="Open navigation">☰</button>
+        <div class="search-wrap">
+          <span>⌕</span>
+          <input id="globalSearch" type="search" placeholder="Search anime, Korean & Japanese titles" autocomplete="off">
+          <kbd>⌘ K</kbd>
+          <div class="search-results" id="searchResults" hidden></div>
+        </div>
+        <div class="top-actions">
+          <button class="region-button" id="regionButton"><span>◎</span><span id="regionLabel">India</span><b>⌄</b></button>
+          <button class="icon-button" id="themeButton" aria-label="Toggle theme">☼</button>
+        </div>
+      </header>
+
+      <section class="view active" id="homeView" data-view="home">
+        <div class="hero">
+          <div class="hero-copy">
+            <span class="eyebrow"><i></i> ANIME · KOREA · JAPAN</span>
+            <h1>Three worlds to explore.<br><em>Nothing else.</em></h1>
+            <p>A focused home for legal anime, Korean cinema and drama, plus Japanese films—complete with real artwork.</p>
+            <div class="hero-actions">
+              <button class="primary-button" data-route="discover"><span>⌕</span> Start exploring</button>
+              <button class="secondary-button" id="generateHero"><span>✦</span> Build my week</button>
+            </div>
+            <div class="hero-proof">
+              <span><b>3</b> focused lanes</span><i></i><span><b>₹0</b> monthly cost</span><i></i><span><b>100%</b> official</span>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="ambient one"></div><div class="ambient two"></div>
+            <div class="poster-card card-back" style="background-image:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.08)),url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=500&q=82')"><small>JAPANESE</small><strong>TOKYO<br>STORIES</strong><span>J-CINEMA</span></div>
+            <div class="poster-card card-mid" style="background-image:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.08)),url('https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=500&q=82')"><small>KOREAN</small><strong>SEOUL<br>NIGHTS</strong><span>K-DRAMA</span></div>
+            <div class="poster-card card-front" style="background-image:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.08)),url('https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=500&q=82')"><small>ANIMATION</small><strong>ANIME<br>SEASON</strong><span>FREE EPISODES</span></div>
+            <div class="free-badge"><span>✓</span><strong>FREE</strong><small>No subscription</small></div>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div><span class="kicker">CURATED FOR YOU</span><h2>Anime, Korean & Japanese picks</h2></div>
+          <button class="text-button" data-route="discover">View all <span>→</span></button>
+        </div>
+        <div class="media-row" id="homePicks"></div>
+
+        <div class="home-grid">
+          <section class="panel platform-panel">
+            <div class="panel-heading"><div><span class="kicker">START HERE</span><h3>Free platforms</h3></div><button class="text-button" data-route="discover">Browse all →</button></div>
+            <div class="platform-mini-list" id="platformMiniList"></div>
+          </section>
+          <section class="panel week-panel">
+            <div class="panel-heading"><div><span class="kicker">YOUR WEEK</span><h3>A plan, not a scroll</h3></div><span class="spark">✦</span></div>
+            <p>Pick your interests and Freely will mix anime, Korean and Japanese titles across seven nights.</p>
+            <div class="genre-chips compact" id="homeGenres"></div>
+            <button class="primary-button full" id="generateWeekButton">Generate my free week <span>→</span></button>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="discoverView" data-view="discover">
+        <div class="page-intro">
+          <span class="eyebrow"><i></i> ASIAN WATCH FINDER</span>
+          <h1>Anime, Korea, Japan. <em>Only.</em></h1>
+          <p>Browse visual picks from legitimate channels and cultural streaming services available in your region.</p>
+        </div>
+        <div class="filter-bar">
+          <div class="filter-group" id="typeFilters">
+            <button class="filter-pill active" data-filter="all">All three</button>
+            <button class="filter-pill" data-filter="Animation">Animation</button>
+            <button class="filter-pill" data-filter="Korean">Korean</button>
+            <button class="filter-pill" data-filter="Japanese">Japanese</button>
+          </div>
+          <select id="genreFilter" aria-label="Filter by genre"><option value="all">All genres</option></select>
+          <select id="platformFilter" aria-label="Filter by platform"><option value="all">All platforms</option></select>
+        </div>
+        <div class="discovery-layout">
+          <div>
+            <div class="results-meta"><strong id="resultCount">0 free picks</strong><span>Catalogs change; confirm availability on the provider.</span></div>
+            <div class="media-grid" id="discoverGrid"></div>
+          </div>
+          <aside class="platform-finder panel">
+            <span class="kicker">PLATFORM FINDER</span><h3>Where should I look?</h3>
+            <p>Tell us what matters and we’ll point you to the right legal service.</p>
+            <label>I'm in<select id="finderRegion"><option>India</option><option>United States</option><option>United Kingdom</option><option>Global</option></select></label>
+            <label>I want<select id="finderNeed"><option value="anime">Anime & animation</option><option value="korean">Korean drama & film</option><option value="japanese">Japanese film & TV</option><option value="live">Live channels</option></select></label>
+            <label>Ads are<select id="finderAds"><option value="okay">Okay with me</option><option value="avoid">Prefer to avoid</option></select></label>
+            <button class="primary-button full" id="findPlatformButton">Find my platforms</button>
+            <div id="finderResults" class="finder-results"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" id="liveView" data-view="live">
+        <div class="page-intro live-intro">
+          <span class="eyebrow"><i></i> PREMIERES + LIVE CHANNELS</span>
+          <h1>Asian screens. <em>Live & official.</em></h1>
+          <p>Jump to anime premieres, Korean entertainment and Japanese public broadcasting.</p>
+        </div>
+        <div class="notice"><span>◎</span><div><strong>Availability follows your location</strong><p>Channels and events are licensed by region. Freely never recommends VPN workarounds or unofficial restreams.</p></div></div>
+        <div class="live-categories" id="liveCategories"></div>
+      </section>
+
+      <section class="view" id="watchlistView" data-view="watchlist">
+        <div class="page-intro with-action">
+          <div><span class="eyebrow"><i></i> ASIAN WATCHLIST GENERATOR</span><h1>Your week, <em>beautifully mixed.</em></h1><p>Seven nights of animation, Korean stories and Japanese cinema—saved only in this browser.</p></div>
+          <button class="primary-button" id="regenerateWeek">✦ Regenerate week</button>
+        </div>
+        <div class="watchlist-layout">
+          <div class="week-calendar" id="weekCalendar"></div>
+          <aside class="panel preferences-card">
+            <span class="kicker">TUNE YOUR PICKS</span><h3>What are you in the mood for?</h3>
+            <div class="genre-chips" id="watchGenres"></div>
+            <label class="range-label"><span>Nightly time budget</span><strong id="runtimeValue">90 min</strong></label>
+            <input type="range" id="runtimeRange" min="30" max="180" value="90" step="15">
+            <label class="toggle-row"><span><strong>Keep it varied</strong><small>Mix genres through the week</small></span><input type="checkbox" id="varietyToggle" checked><i></i></label>
+            <button class="primary-button full" id="applyPreferences">Update my week</button>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" id="subtitlesView" data-view="subtitles">
+        <div class="page-intro"><span class="eyebrow"><i></i> SUBTITLE FINDER</span><h1>Never miss <em>a word.</em></h1><p>Find community subtitles, then add them safely to media you’re allowed to play locally.</p></div>
+        <div class="subtitle-tool panel">
+          <div class="subtitle-form">
+            <label>Movie or show<input id="subtitleTitle" type="text" placeholder="e.g. The General (1926)"></label>
+            <label>Language<select id="subtitleLanguage"><option>English</option><option>Hindi</option><option>Spanish</option><option>French</option><option>German</option><option>Tamil</option><option>Telugu</option></select></label>
+            <button class="primary-button" id="searchSubtitles">Search subtitles →</button>
+          </div>
+          <div class="subtitle-results" id="subtitleResults">
+            <span class="cc-illustration">CC</span><h3>Search trusted subtitle indexes</h3><p>We’ll open an exact title search on OpenSubtitles or SubDL in a new tab.</p>
+          </div>
+        </div>
+        <div class="steps-grid">
+          <article><span>01</span><h3>Download the right match</h3><p>Match the release name, year, language and frame rate. Prefer highly rated uploads.</p></article>
+          <article><span>02</span><h3>Scan & extract</h3><p>Subtitle files should be <code>.srt</code> or <code>.vtt</code>. Never run executables from subtitle archives.</p></article>
+          <article><span>03</span><h3>Add in your player</h3><p>In VLC choose Subtitle → Add Subtitle File. This works with local files you own or are allowed to use.</p></article>
+        </div>
+      </section>
+
+      <section class="view" id="toolkitView" data-view="toolkit">
+        <div class="page-intro"><span class="eyebrow"><i></i> SMARTER VIEWING</span><h1>Your free-streaming <em>toolkit.</em></h1><p>Helpful browser tools for privacy, focus and finding content—not bypassing a platform’s access controls.</p></div>
+        <div class="tool-grid" id="toolGrid"></div>
+        <div class="notice amber"><span>!</span><div><strong>Ads fund free, licensed streaming</strong><p>Blocking playback ads may violate a service’s terms or prevent video from working. Prefer consent controls, tracker protection and ad personalization settings where offered.</p></div></div>
+      </section>
+
+      <section class="view" id="setupView" data-view="setup">
+        <div class="page-intro"><span class="eyebrow"><i></i> HUB SETUP</span><h1>Make your laptop a <em>streaming center.</em></h1><p>Four quick steps. No server, paid subscription or risky download required.</p></div>
+        <div class="setup-timeline">
+          <article><span>1</span><div><h3>Choose your lane</h3><p>Start with Muse Asia or Ani-One for anime, KBS World for Korean shows, and JFF Theater for Japanese film.</p><button data-route="discover">Open platform finder →</button></div></article>
+          <article><span>2</span><div><h3>Save Freely to your dock</h3><p>In Chrome, open the menu → Cast, save and share → Create shortcut. Enable “Open as window” for an app-like experience.</p></div></article>
+          <article><span>3</span><div><h3>Set your preferences</h3><p>Pick a few genres and a nightly time budget. Your choices remain on this device in browser storage.</p><button data-route="watchlist">Build my watchlist →</button></div></article>
+          <article><span>4</span><div><h3>Go full screen</h3><p>Use the provider’s own player and press <kbd>F</kbd> or its full-screen button. Cast only through officially supported controls.</p></div></article>
+        </div>
+        <div class="privacy-note"><span>⌁</span><div><strong>Your hub stays yours.</strong><p>Freely has no account system, analytics or tracking. Preferences and watchlists stay inside your browser.</p></div></div>
+      </section>
+
+      <footer><span>freely</span><p>Discovery links only. Availability and catalogs vary by country and may change.</p><button id="clearData">Reset my data</button></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="profileModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+      <button class="modal-close" id="closeProfile" aria-label="Close">×</button>
+      <span class="kicker">PERSONALIZE FREELY</span><h2 id="profileTitle">Make it feel like yours.</h2>
+      <label>Your name<input id="nameInput" type="text" maxlength="24" placeholder="Alex"></label>
+      <label>Your region<select id="regionInput"><option>India</option><option>United States</option><option>United Kingdom</option><option>Global</option></select></label>
+      <button class="primary-button full" id="saveProfile">Save preferences</button>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>

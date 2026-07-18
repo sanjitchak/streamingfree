@@ -29,7 +29,7 @@ The app uses only HTML, CSS, and JavaScript with no build step.
 
 ## Automatic catalog updates
 
-The scheduled GitHub Actions workflow runs daily at 02:30 UTC (08:00 IST) and can also be started manually from the Actions tab. It:
+The scheduled GitHub Actions workflow runs daily at 02:30 UTC (08:00 IST) on Node.js 24 and can also be started manually from the Actions tab. It:
 
 1. Reads official YouTube RSS feeds and the current JFF Theater catalog.
 2. Discovers new animation, Korean, and Japanese titles.

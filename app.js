@@ -32,21 +32,28 @@ const media = [
   {id:18,title:'Tora-san, Our Lovable Tramp',year:'1969',type:'Movie',focus:'Japanese',genre:'Comedy',platform:'JFF Theater',runtime:91,tag:'Beloved classic',art:'linear-gradient(145deg,#5d3928,#dbb976)',image:'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=700&q=82',words:'TORA-SAN',url:'https://www.jff.jpf.go.jp/'}
 ];
 
+const languageAccess = {
+  1:'EN SUB', 2:'EN SUB', 3:'EN SUB', 4:'EN SUB', 5:'EN SUB', 6:'EN DUB',
+  7:'EN SUB', 8:'EN SUB', 9:'EN SUB', 10:'EN SUB', 11:'EN SUB', 12:'EN SUB',
+  13:'EN SUB', 14:'EN SUB', 15:'EN SUB', 16:'EN SUB', 17:'EN SUB', 18:'EN SUB'
+};
+media.forEach(item => { item.access = languageAccess[item.id] || null; });
+
 const live = {
   'Animation & Anime':[
-    {name:'Muse Asia',detail:'Official anime premieres · India',logo:'M',color:'#e44d78',url:'https://www.youtube.com/@MuseAsia'},
-    {name:'Ani-One Asia',detail:'Seasonal anime · India',logo:'A1',color:'#8554dd',url:'https://www.youtube.com/@AniOneAsia'},
-    {name:'Pokémon Asia',detail:'Official episodes + premieres',logo:'PK',color:'#e8a90d',url:'https://www.youtube.com/@PokemonAsiaENG'}
+    {name:'Muse Asia',detail:'English subtitles · India',logo:'M',color:'#e44d78',url:'https://www.youtube.com/@MuseAsia'},
+    {name:'Ani-One Asia',detail:'English subtitles · India',logo:'A1',color:'#8554dd',url:'https://www.youtube.com/@AniOneAsia'},
+    {name:'Pokémon Asia',detail:'English dubbed episodes',logo:'PK',color:'#e8a90d',url:'https://www.youtube.com/@PokemonAsiaENG'}
   ],
   'Korean':[
-    {name:'KBS World TV',detail:'Drama, music + entertainment',logo:'KBS',color:'#2879d8',url:'https://www.youtube.com/@kbsworldtv/streams'},
-    {name:'KBS Korea',detail:'Culture + live public TV',logo:'K',color:'#264d94',url:'https://www.youtube.com/@KBStogether/streams'},
-    {name:'Korean Film Archive',detail:'Classic films + restored cinema',logo:'KOFA',color:'#b63b2f',url:'https://www.youtube.com/@KoreanFilm'}
+    {name:'KBS World TV',detail:'English-subtitled programs',logo:'KBS',color:'#2879d8',url:'https://www.youtube.com/@kbsworldtv/streams'},
+    {name:'KBS Korea',detail:'Captioned programs when available',logo:'K',color:'#264d94',url:'https://www.youtube.com/@KBStogether/streams'},
+    {name:'Korean Film Archive',detail:'Selected English-subtitled classics',logo:'KOFA',color:'#b63b2f',url:'https://www.youtube.com/@KoreanFilm'}
   ],
   'Japanese':[
-    {name:'NHK World-Japan',detail:'Live public broadcasting',logo:'NHK',color:'#ca2228',url:'https://www3.nhk.or.jp/nhkworld/en/live/'},
-    {name:'JFF Theater',detail:'Rotating free Japanese films',logo:'JFF',color:'#e15732',url:'https://www.jff.jpf.go.jp/'},
-    {name:'NHK Programs',detail:'Japanese culture on demand',logo:'JP',color:'#333',url:'https://www3.nhk.or.jp/nhkworld/en/shows/'}
+    {name:'NHK World-Japan',detail:'English-language broadcast',logo:'NHK',color:'#ca2228',url:'https://www3.nhk.or.jp/nhkworld/en/live/'},
+    {name:'JFF Theater',detail:'English subtitles · rotating films',logo:'JFF',color:'#e15732',url:'https://www.jff.jpf.go.jp/'},
+    {name:'NHK Programs',detail:'English audio or subtitles',logo:'JP',color:'#333',url:'https://www3.nhk.or.jp/nhkworld/en/shows/'}
   ]
 };
 
@@ -76,7 +83,7 @@ function save(){localStorage.setItem('freely-asian-watchlist',JSON.stringify(sta
 
 function mediaCard(item){
   const saved=state.saved.includes(item.id);
-  return `<article class="media-card" data-id="${item.id}"><div class="media-art" style="background:${item.art}"><img src="${item.image}" alt="${escapeHtml(item.title)} artwork" loading="lazy" decoding="async" onerror="this.remove()"><div class="media-badges"><span class="media-badge free">FREE</span><span class="media-badge">${escapeHtml(item.focus)}</span></div><button class="watch-button ${saved?'saved':''}" data-save="${item.id}" aria-label="${saved?'Remove from':'Add to'} watchlist">${saved?'✓':'+'}</button><div class="art-content"><small>${escapeHtml(item.platform.toUpperCase())}</small><strong>${escapeHtml(item.words).replace(/\n/g,'<br>')}</strong></div><button class="play-overlay" data-open="${item.id}" aria-label="Open official provider">▶</button></div><h3>${escapeHtml(item.title)}</h3><p>${item.focus} · ${item.type} · ${item.runtime} min</p></article>`;
+  return `<article class="media-card" data-id="${item.id}"><div class="media-art" style="background:${item.art}"><img src="${item.image}" alt="${escapeHtml(item.title)} artwork" loading="lazy" decoding="async" onerror="this.remove()"><div class="media-badges"><span class="media-badge free">FREE</span><span class="media-badge">${escapeHtml(item.focus)}</span><span class="media-badge access">CC ${escapeHtml(item.access)}</span></div><button class="watch-button ${saved?'saved':''}" data-save="${item.id}" aria-label="${saved?'Remove from':'Add to'} watchlist">${saved?'✓':'+'}</button><div class="art-content"><small>${escapeHtml(item.platform.toUpperCase())}</small><strong>${escapeHtml(item.words).replace(/\n/g,'<br>')}</strong></div><button class="play-overlay" data-open="${item.id}" aria-label="Open official provider">▶</button></div><h3>${escapeHtml(item.title)}</h3><p>${item.access} · ${item.type} · ${item.runtime} min</p></article>`;
 }
 
 function renderHome(){
@@ -94,10 +101,10 @@ function renderGenres(){
 }
 
 function renderDiscover(){
-  const genre=$('#genreFilter')?.value||'all',platform=$('#platformFilter')?.value||'all';
-  const list=media.filter(m=>(state.type==='all'||m.focus===state.type)&&(genre==='all'||m.genre===genre)&&(platform==='all'||m.platform===platform));
+  const genre=$('#genreFilter')?.value||'all',platform=$('#platformFilter')?.value||'all',access=$('#accessFilter')?.value||'all';
+  const list=media.filter(m=>m.access&&(state.type==='all'||m.focus===state.type)&&(genre==='all'||m.genre===genre)&&(platform==='all'||m.platform===platform)&&(access==='all'||m.access.includes(access)));
   $('#discoverGrid').innerHTML=list.map(mediaCard).join('');
-  $('#resultCount').textContent=`${list.length} free pick${list.length===1?'':'s'}`;
+  $('#resultCount').textContent=`${list.length} accessible pick${list.length===1?'':'s'}`;
 }
 
 function renderLive(){
@@ -105,12 +112,12 @@ function renderLive(){
 }
 
 function generateWeek(){
-  const runtime=Number($('#runtimeRange')?.value||90);let pool=media.filter(m=>state.genres.includes(m.genre)&&m.runtime<=runtime+30);if(pool.length<7)pool=media.filter(m=>m.runtime<=runtime+30);pool=[...pool].sort(()=>Math.random()-.5);state.week=Array.from({length:7},(_,i)=>pool[i%pool.length].id);save();renderWeek();toast('Your new 7-night plan is ready');
+  const runtime=Number($('#runtimeRange')?.value||90);let pool=media.filter(m=>m.access&&state.genres.includes(m.genre)&&m.runtime<=runtime+30);if(pool.length<7)pool=media.filter(m=>m.access&&m.runtime<=runtime+30);pool=[...pool].sort(()=>Math.random()-.5);state.week=Array.from({length:7},(_,i)=>pool[i%pool.length].id);save();renderWeek();toast('Your subtitled or dubbed week is ready');
 }
 function renderWeek(){
   const days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
   if(!state.week.length){$('#weekCalendar').innerHTML='<div class="empty-week">Choose your genres, then generate a week made for you.</div>';return}
-  $('#weekCalendar').innerHTML=state.week.map((id,i)=>{const m=media.find(x=>x.id===id)||media[i];return `<article class="day-card"><div class="day-label"><strong>${days[i]}</strong><small>${i<5?'Weeknight':'Weekend'}</small></div><div class="day-art" style="background:${m.art}"><img src="${m.image}" alt="" loading="lazy" onerror="this.remove()"></div><div class="day-info"><h3>${m.title}</h3><p>${m.focus} · ${m.runtime} min · ${m.platform}</p></div><button class="day-action" data-open="${m.id}" aria-label="Open ${m.title}">▶</button></article>`}).join('');
+  $('#weekCalendar').innerHTML=state.week.map((id,i)=>{const m=media.find(x=>x.id===id&&x.access)||media.find(x=>x.access);return `<article class="day-card"><div class="day-label"><strong>${days[i]}</strong><small>${i<5?'Weeknight':'Weekend'}</small></div><div class="day-art" style="background:${m.art}"><img src="${m.image}" alt="" loading="lazy" onerror="this.remove()"></div><div class="day-info"><h3>${m.title}</h3><p>${m.access} · ${m.runtime} min · ${m.platform}</p></div><button class="day-action" data-open="${m.id}" aria-label="Open ${m.title}">▶</button></article>`}).join('');
 }
 function renderTools(){$('#toolGrid').innerHTML=tools.map(t=>`<article class="tool-card"><span class="tool-icon" style="background:${t.color}">${t.icon}</span><h3>${t.title}</h3><p>${t.text}</p><a href="${t.link}" target="_blank" rel="noopener">${t.cta} →</a><small>${t.note}</small></article>`).join('')}
 function updateProfile(){const {name,region}=state.profile;$('#profileName').textContent=name;$('#profileRegion').textContent=`${region} · Free plan`;$('#regionLabel').textContent=region;$('#avatar').textContent=(name==='My profile'?'A':name[0]).toUpperCase();$('#nameInput').value=name==='My profile'?'':name;$('#regionInput').value=region;$('#finderRegion').value=region;renderHome()}
@@ -130,7 +137,7 @@ document.addEventListener('click',e=>{
 });
 
 $$('.filter-pill').forEach(b=>b.addEventListener('click',()=>{$$('.filter-pill').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.type=b.dataset.filter;renderDiscover()}));
-$('#genreFilter').addEventListener('change',renderDiscover);$('#platformFilter').addEventListener('change',renderDiscover);
+$('#genreFilter').addEventListener('change',renderDiscover);$('#platformFilter').addEventListener('change',renderDiscover);$('#accessFilter').addEventListener('change',renderDiscover);
 $('#menuButton').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));
 $('#themeButton').addEventListener('click',()=>{document.body.classList.toggle('light');localStorage.setItem('freely-theme',document.body.classList.contains('light')?'light':'dark')});
 $('#profileButton').addEventListener('click',()=>$('#profileModal').hidden=false);$('#regionButton').addEventListener('click',()=>$('#profileModal').hidden=false);$('#closeProfile').addEventListener('click',()=>$('#profileModal').hidden=true);$('#profileModal').addEventListener('click',e=>{if(e.target.id==='profileModal')e.currentTarget.hidden=true});
@@ -139,7 +146,7 @@ $('#generateWeekButton').addEventListener('click',()=>{generateWeek();route('wat
 $('#runtimeRange').addEventListener('input',e=>$('#runtimeValue').textContent=`${e.target.value} min`);
 $('#findPlatformButton').addEventListener('click',()=>{const region=$('#finderRegion').value,need=$('#finderNeed').value,ads=$('#finderAds').value;let found=platforms.filter(p=>(p.regions.includes(region)||p.regions.includes('Global'))&&p.types.includes(need)&&(ads==='okay'||p.ads==='avoid')).slice(0,3);if(!found.length)found=platforms.filter(p=>p.regions.includes('Global')).slice(0,3);$('#finderResults').innerHTML=found.map(p=>`<a class="finder-result" href="${p.url}" target="_blank" rel="noopener"><span class="platform-logo" style="background:${p.color}">${p.initials}</span><span>${p.name}<small style="display:block;color:var(--muted)">${p.verified}</small></span><b>↗</b></a>`).join('')});
 $('#searchSubtitles').addEventListener('click',()=>{const q=$('#subtitleTitle').value.trim(),lang=$('#subtitleLanguage').value;if(!q){toast('Enter a movie or show title');return}const encoded=encodeURIComponent(q);$('#subtitleResults').innerHTML=`<span class="cc-illustration">CC</span><h3>${escapeHtml(q)}</h3><p>Search for ${escapeHtml(lang)} subtitles. Verify the release match before downloading.</p><div class="subtitle-links"><a href="https://www.opensubtitles.com/en/en/search-all/q-${encoded}" target="_blank" rel="noopener">OpenSubtitles ↗</a><a href="https://subdl.com/search/${encoded}" target="_blank" rel="noopener">SubDL ↗</a></div>`});
-$('#globalSearch').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase(),box=$('#searchResults');if(q.length<2){box.hidden=true;return}const results=media.filter(m=>[m.title,m.genre,m.platform,m.type,m.focus].some(v=>v.toLowerCase().includes(q))).slice(0,6);box.innerHTML=results.length?results.map(m=>`<button class="search-result" data-open="${m.id}"><span class="search-result-art" style="background-image:url('${m.image}');background-size:cover;background-position:center"></span><span><strong>${m.title}</strong><small>${m.focus} · ${m.platform}</small></span></button>`).join(''):'<div style="padding:16px;color:var(--muted);font-size:11px">No matches. Try Animation, Korean or Japanese.</div>';box.hidden=false});
+$('#globalSearch').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase(),box=$('#searchResults');if(q.length<2){box.hidden=true;return}const results=media.filter(m=>m.access&&[m.title,m.genre,m.platform,m.type,m.focus,m.access].some(v=>v.toLowerCase().includes(q))).slice(0,6);box.innerHTML=results.length?results.map(m=>`<button class="search-result" data-open="${m.id}"><span class="search-result-art" style="background-image:url('${m.image}');background-size:cover;background-position:center"></span><span><strong>${m.title}</strong><small>${m.access} · ${m.platform}</small></span></button>`).join(''):'<div style="padding:16px;color:var(--muted);font-size:11px">No subtitled or dubbed matches found.</div>';box.hidden=false});
 document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();$('#globalSearch').focus()}if(e.key==='Escape'){$('#searchResults').hidden=true;$('#profileModal').hidden=true}});
 $('#clearData').addEventListener('click',()=>{localStorage.removeItem('freely-asian-watchlist');localStorage.removeItem('freely-asian-genres');localStorage.removeItem('freely-asian-week');localStorage.removeItem('freely-profile');location.reload()});
 

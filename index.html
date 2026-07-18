@@ -65,7 +65,7 @@
           <div class="hero-copy">
             <span class="eyebrow"><i></i> ANIME · KOREA · JAPAN</span>
             <h1>Three worlds to explore.<br><em>Nothing else.</em></h1>
-            <p>A focused home for legal anime, Korean cinema and drama, plus Japanese films—complete with real artwork.</p>
+            <p>A focused home for legal anime, Korean and Japanese stories—with automatic artwork and English subtitles or dubbing.</p>
             <div class="hero-actions">
               <button class="primary-button" data-route="discover"><span>⌕</span> Start exploring</button>
               <button class="secondary-button" id="generateHero"><span>✦</span> Build my week</button>
@@ -118,10 +118,11 @@
           </div>
           <select id="genreFilter" aria-label="Filter by genre"><option value="all">All genres</option></select>
           <select id="platformFilter" aria-label="Filter by platform"><option value="all">All platforms</option></select>
+          <select id="accessFilter" aria-label="Filter by language access"><option value="all">Subtitles or dub</option><option value="SUB">Subtitles</option><option value="DUB">Dubbed</option></select>
         </div>
         <div class="discovery-layout">
           <div>
-            <div class="results-meta"><strong id="resultCount">0 free picks</strong><span>Catalogs change; confirm availability on the provider.</span></div>
+            <div class="results-meta"><strong id="resultCount">0 accessible picks</strong><span>Every listed title has subtitles or a dubbed track.</span></div>
             <div class="media-grid" id="discoverGrid"></div>
           </div>
           <aside class="platform-finder panel">
@@ -148,7 +149,7 @@
 
       <section class="view" id="watchlistView" data-view="watchlist">
         <div class="page-intro with-action">
-          <div><span class="eyebrow"><i></i> ASIAN WATCHLIST GENERATOR</span><h1>Your week, <em>beautifully mixed.</em></h1><p>Seven nights of animation, Korean stories and Japanese cinema—saved only in this browser.</p></div>
+          <div><span class="eyebrow"><i></i> ASIAN WATCHLIST GENERATOR</span><h1>Your week, <em>beautifully mixed.</em></h1><p>Seven subtitled or dubbed nights of animation, Korean stories and Japanese cinema.</p></div>
           <button class="primary-button" id="regenerateWeek">✦ Regenerate week</button>
         </div>
         <div class="watchlist-layout">
